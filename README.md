@@ -23,9 +23,11 @@ This sbt plugin provides a customizable release process that you can add to your
 
 ## Usage
 
-Add the following lines to `./project/plugins.sbt`. See the section [Using Plugins](http://www.scala-sbt.org/release/tutorial/Using-Plugins.html) in the sbt wiki for more information.
+Add the following lines to `./project/plugins.sbt`. See the section [Using a library in a build definition example - Project dependency](http://www.scala-sbt.org/release/docs/Plugins.html#1d%29+Project+dependency) in the sbt wiki for more information.
 
-    addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.0")
+    lazy val root = (project in file(".")).dependsOn(releasePlugin)
+
+    lazy val releasePlugin = uri("git://github.com/dpdearing/sbt-release")
 
 ## version.sbt
 
