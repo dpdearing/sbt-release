@@ -27,7 +27,7 @@ Add the following lines to `./project/plugins.sbt`. See the section [Using a lib
 
     lazy val root = (project in file(".")).dependsOn(releasePlugin)
 
-    lazy val releasePlugin = uri("git://github.com/dpdearing/sbt-release")
+    lazy val releasePlugin = uri("git://github.com/dpdearing/sbt-release#v1.0.2-dpdearing-1")
 
 ## version.sbt
 

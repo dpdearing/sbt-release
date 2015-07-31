@@ -52,9 +52,9 @@ releaseProcess := Seq[ReleaseStep](
   setReleaseVersion,
   commitReleaseVersion,
   tagRelease,
-  publishArtifacts,
-  releaseStepTask(bintrayRelease in `sbt-release`),
+//  publishArtifacts,
+//  releaseStepTask(bintrayRelease in `sbt-release`),
   setNextVersion,
-  commitNextVersion,
-  pushChanges
+  commitNextVersion
+//  pushChanges
 )
