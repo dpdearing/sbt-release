@@ -90,4 +90,18 @@ object VersionSpec extends Specification {
     }
   }
 
-}
+  "Version as SNAPSHOT" should {
+    def asSnapshot(v: String) = version(v).asSnapshot.string
+
+    "add SNAPSHOT as the qualifier" in {
+      asSnapshot("1.2.3.4") must_== "1.2.3.4-SNAPSHOT"
+    }
+    "not drop the existing qualifier " in {
+      asSnapshot("1.2-rc1") must_== "1.2-rc1-SNAPSHOT"
+    }
+    "not double the SNAPSHOT qualifier" in {
+      asSnapshot("1.2-rc1-SNAPSHOT") must_== "1.2-rc1-SNAPSHOT"
+    }
+  }
+
+  }

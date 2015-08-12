@@ -17,6 +17,7 @@ object Version {
     val default = Next
   }
 
+  val SNAPSHOT = "-SNAPSHOT"
   val VersionR = """([0-9]+)((?:\.[0-9]+)+)?([\-0-9a-zA-Z]*)?""".r
   val PreReleaseQualifierR = """[\.-](?i:rc|m|alpha|beta)[\.-]?[0-9]*""".r
 
@@ -65,7 +66,13 @@ case class Version(major: Int, subversions: Seq[Int], qualifier: Option[String])
   def bump(bumpType: Version.Bump): Version = bumpType.bump(this)
 
   def withoutQualifier = copy(qualifier = None)
-  def asSnapshot = copy(qualifier = Some("-SNAPSHOT"))
+  def asSnapshot = copy(qualifier = snapshotQualifier)
+
+  private def snapshotQualifier: Option[String] = qualifier match {
+    case None => Some(Version.SNAPSHOT)
+    case Some(q) if !q.endsWith(Version.SNAPSHOT) => Some(q+Version.SNAPSHOT)
+    case qual : Some[String] => qual
+  }
 
   def string = "" + major + mkString(subversions) + qualifier.getOrElse("")
 
